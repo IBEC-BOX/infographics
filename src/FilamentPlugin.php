@@ -1,22 +1,22 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace AdminKit\Infographics;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use VendorName\Skeleton\UI\Filament\Resources\SingleNameResource;
+use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
 
 class FilamentPlugin implements Plugin
 {
     public function getId(): string
     {
-        return 'filament-plugin-:package_slug';
+        return 'filament-plugin-admin-kit-infographics';
     }
 
     public function register(Panel $panel): void
     {
         $panel->resources([
-            SingleNameResource::class,
+            InfographicResource::class,
         ]);
     }
 

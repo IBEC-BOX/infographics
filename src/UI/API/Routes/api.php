@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VendorName\Skeleton\UI\API\Controllers\SingleNameController;
+use AdminKit\Infographics\UI\API\Controllers\InfographicController;
 
-Route::get('/skeleton_without_prefix', [SingleNameController::class, 'index']);
-Route::get('/skeleton_without_prefix/{id}', [SingleNameController::class, 'show']);
+Route::get('/infographics', [InfographicController::class, 'index']);
+Route::get('/infographics/{id}', [InfographicController::class, 'show']);
