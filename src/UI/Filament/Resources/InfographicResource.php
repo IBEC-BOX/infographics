@@ -3,11 +3,11 @@
 namespace AdminKit\Infographics\UI\Filament\Resources;
 
 use AdminKit\Core\Forms\Components\TranslatableTabs;
+use AdminKit\Infographics\Models\Infographic;
+use AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use AdminKit\Infographics\Models\Infographic;
-use AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 
 class InfographicResource extends Resource
 {

@@ -2,8 +2,8 @@
 
 namespace AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 
-use Filament\Resources\Pages\CreateRecord;
 use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
+use Filament\Resources\Pages\CreateRecord;
 
 class CreateInfographic extends CreateRecord
 {

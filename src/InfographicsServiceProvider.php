@@ -2,10 +2,10 @@
 
 namespace AdminKit\Infographics;
 
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 use AdminKit\Infographics\Commands\InfographicsCommand;
 use AdminKit\Infographics\Providers\RouteServiceProvider;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class InfographicsServiceProvider extends PackageServiceProvider
 {

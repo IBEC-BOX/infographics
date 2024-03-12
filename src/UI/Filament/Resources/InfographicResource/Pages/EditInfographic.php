@@ -2,9 +2,9 @@
 
 namespace AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 
+use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
-use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
 
 class EditInfographic extends EditRecord
 {

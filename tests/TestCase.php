@@ -2,10 +2,10 @@
 
 namespace AdminKit\Infographics\Tests;
 
+use AdminKit\Infographics\InfographicsServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use AdminKit\Infographics\InfographicsServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -2,8 +2,8 @@
 
 namespace AdminKit\Infographics\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use AdminKit\Infographics\Models\Infographic;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InfographicFactory extends Factory
 {

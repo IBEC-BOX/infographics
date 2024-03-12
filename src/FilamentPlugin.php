@@ -2,9 +2,9 @@
 
 namespace AdminKit\Infographics;
 
+use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use AdminKit\Infographics\UI\Filament\Resources\InfographicResource;
 
 class FilamentPlugin implements Plugin
 {

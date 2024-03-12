@@ -3,9 +3,9 @@
 namespace AdminKit\Infographics\Models;
 
 use AdminKit\Core\Abstracts\Models\AbstractModel;
+use AdminKit\Infographics\Database\Factories\InfographicFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Translatable\HasTranslations;
-use AdminKit\Infographics\Database\Factories\InfographicFactory;
 
 class Infographic extends AbstractModel
 {
