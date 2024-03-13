@@ -2,12 +2,14 @@
 
 namespace AdminKit\Infographics\UI\Filament\Resources;
 
-use AdminKit\Core\Forms\Components\TranslatableTabs;
-use AdminKit\Infographics\Models\Infographic;
-use AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 use Filament\Forms;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Tabs\Tab;
+use AdminKit\Infographics\Models\Infographic;
+use AdminKit\Core\Forms\Components\TranslatableTabs;
+use AdminKit\Infographics\UI\Filament\Tables\Columns\SlidesColumn;
+use AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
 
 class InfographicResource extends Resource
 {
@@ -19,13 +21,64 @@ class InfographicResource extends Resource
     {
         return $form
             ->schema([
-                TranslatableTabs::make(fn ($locale) => Forms\Components\Tabs\Tab::make($locale)->schema([
-                    Forms\Components\TextInput::make('title')
-                        ->label(__('admin-kit-infographics::infographics.resource.title'))
-                        ->required($locale === app()->getLocale()),
-                ])),
-            ])
-            ->columns(1);
+                Forms\Components\SpatieMediaLibraryFileUpload::make('background')
+                    ->collection('background')
+                    ->directory('infographic')
+                    ->label(__('admin-kit-infographics::infographics.resource.background'))
+                    ->image()
+                    ->required()
+                    ->columnSpan(2),
+                Forms\Components\Section::make('Кнопка действия')->schema([
+                    TranslatableTabs::make(fn ($locale) => Tab::make($locale)->schema([
+                        Forms\Components\TextInput::make('action_title.'.$locale)
+                            ->label(__('admin-kit-infographics::infographics.resource.title'))
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('action_link.'.$locale)
+                            ->label(__('admin-kit-infographics::infographics.resource.link'))
+                            ->url()
+                            ->maxLength(255),
+                    ])),
+                ]),
+                Forms\Components\Repeater::make('slides')
+                    ->label(__('admin-kit-infographics::infographics.resource.slides'))
+                    ->schema([
+                        TranslatableTabs::make(fn ($locale) => Tab::make($locale)->schema([
+                            Forms\Components\TextInput::make('title.'.$locale)
+                                ->label(__('admin-kit-infographics::infographics.resource.title'))
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('subtitle.'.$locale)
+                                ->label(__('admin-kit-infographics::infographics.resource.subtitle'))
+                                ->maxLength(255),
+                            Forms\Components\Repeater::make('numbers')
+                                ->label(__('admin-kit-infographics::infographics.resource.numbers'))
+                                ->schema([
+                                    Forms\Components\FileUpload::make('icon')
+                                        ->label(__('admin-kit-infographics::infographics.resource.icon'))
+                                        ->image()
+                                        ->columnSpan(2),
+                                    Forms\Components\TextInput::make('number')
+                                        ->label(__('admin-kit-infographics::infographics.resource.number'))
+                                        ->required()
+                                        ->numeric(),
+                                    Forms\Components\TextInput::make('postfix.'.$locale)
+                                        ->label(__('admin-kit-infographics::infographics.resource.postfix'))
+                                        ->placeholder(__('admin-kit-infographics::infographics.resource.postfix_placeholder'))
+                                        ->maxLength(255),
+                                    Forms\Components\TextInput::make('subtitle.'.$locale)
+                                        ->label(__('admin-kit-infographics::infographics.resource.subtitle'))
+                                        ->columnSpan(2),
+                                ])
+                                ->columns(2)
+                                ->defaultItems(1)
+                                ->reorderableWithButtons()
+                                ->addActionLabel(__('admin-kit-infographics::infographics.action.add_number')),
+                        ])),
+                    ])
+                    ->columnSpan(2)
+                    ->defaultItems(1)
+                    ->reorderableWithButtons()
+                    ->addActionLabel(__('admin-kit-infographics::infographics.action.add_slide')),
+            ]);
     }
 
     public static function table(Tables\Table $table): Tables\Table
@@ -33,14 +86,12 @@ class InfographicResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')
-                    ->label(__('admin-kit-infographics::infographics.resource.id'))
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('title')
-                    ->label(__('admin-kit-infographics::infographics.resource.title')),
+                    ->label(__('admin-kit-infographics::infographics.resource.id')),
+                SlidesColumn::make('slides')
+                    ->label(__('admin-kit-infographics::infographics.resource.slides')),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label(__('admin-kit-infographics::infographics.resource.created_at')),
             ])
-            ->defaultSort('id', 'desc')
             ->filters([
                 //
             ])
@@ -51,7 +102,8 @@ class InfographicResource extends Resource
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ])
-            ->defaultSort('id', 'desc');
+            ->reorderable('sort')
+            ->defaultSort('sort');
     }
 
     public static function getRelations(): array
@@ -76,11 +128,6 @@ class InfographicResource extends Resource
     }
 
     public static function getPluralLabel(): ?string
-    {
-        return __('admin-kit-infographics::infographics.resource.plural_label');
-    }
-
-    public static function getNavigationGroup(): ?string
     {
         return __('admin-kit-infographics::infographics.resource.plural_label');
     }

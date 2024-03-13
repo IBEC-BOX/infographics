@@ -5,16 +5,15 @@ declare(strict_types=1);
 namespace AdminKit\Infographics\UI\API\Controllers;
 
 use AdminKit\Infographics\Models\Infographic;
+use AdminKit\Infographics\UI\API\DTO\InfographicDTO;
 
 class InfographicController extends Controller
 {
-    public function index()
+    public function showFirst(): InfographicDTO
     {
-        return Infographic::all();
-    }
+        $infographic = Infographic::query()
+            ->firstOrFail();
 
-    public function show(int $id)
-    {
-        return Infographic::findOrFail($id);
+        return InfographicDTO::from($infographic);
     }
 }
