@@ -2,14 +2,14 @@
 
 namespace AdminKit\Infographics\UI\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\Tabs\Tab;
-use AdminKit\Infographics\Models\Infographic;
 use AdminKit\Core\Forms\Components\TranslatableTabs;
-use AdminKit\Infographics\UI\Filament\Tables\Columns\SlidesColumn;
+use AdminKit\Infographics\Models\Infographic;
 use AdminKit\Infographics\UI\Filament\Resources\InfographicResource\Pages;
+use AdminKit\Infographics\UI\Filament\Tables\Columns\SlidesColumn;
+use Filament\Forms;
+use Filament\Forms\Components\Tabs\Tab;
+use Filament\Resources\Resource;
+use Filament\Tables;
 
 class InfographicResource extends Resource
 {

@@ -2,18 +2,17 @@
 
 namespace AdminKit\Infographics\UI\API\DTO;
 
-use Spatie\LaravelData\Data;
-use Illuminate\Support\Collection;
 use AdminKit\Infographics\Models\Infographic;
+use Illuminate\Support\Collection;
+use Spatie\LaravelData\Data;
 
 class InfographicDTO extends Data
 {
     public function __construct(
-        public string     $background,
-        public array      $action,
+        public string $background,
+        public array $action,
         public Collection $slides,
-    )
-    {
+    ) {
     }
 
     public static function fromModel(Infographic $infographic): InfographicDTO
