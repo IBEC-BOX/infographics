@@ -27,7 +27,9 @@ class InfographicResource extends Resource
                     ->label(__('admin-kit-infographics::infographics.resource.background'))
                     ->image()
                     ->required()
-                    ->columnSpan(2),
+                    ->columnSpan(2)
+                    ->optimize('webp')
+                    ->resize(30),
                 Forms\Components\Section::make('Кнопка действия')->schema([
                     TranslatableTabs::make(fn ($locale) => Tab::make($locale)->schema([
                         Forms\Components\TextInput::make('action_title.'.$locale)
