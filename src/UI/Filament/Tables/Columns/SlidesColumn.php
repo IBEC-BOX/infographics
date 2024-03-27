@@ -2,8 +2,8 @@
 
 namespace AdminKit\Infographics\UI\Filament\Tables\Columns;
 
-use Illuminate\Support\Str;
 use Filament\Tables\Columns\Column;
+use Illuminate\Support\Str;
 
 class SlidesColumn extends Column
 {
