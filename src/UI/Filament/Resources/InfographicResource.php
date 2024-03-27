@@ -26,21 +26,23 @@ class InfographicResource extends Resource
                     ->directory('infographic')
                     ->label(__('admin-kit-infographics::infographics.resource.background'))
                     ->image()
-                    ->required()
                     ->columnSpan(2)
                     ->optimize('webp')
                     ->resize(30),
-                Forms\Components\Section::make('Кнопка действия')->schema([
-                    TranslatableTabs::make(fn ($locale) => Tab::make($locale)->schema([
-                        Forms\Components\TextInput::make('action_title.'.$locale)
-                            ->label(__('admin-kit-infographics::infographics.resource.title'))
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('action_link.'.$locale)
-                            ->label(__('admin-kit-infographics::infographics.resource.link'))
-                            ->url()
-                            ->maxLength(255),
-                    ])),
-                ]),
+                Forms\Components\Section::make('Кнопка действия')
+                    ->schema([
+                        TranslatableTabs::make(fn ($locale) => Tab::make($locale)->schema([
+                            Forms\Components\TextInput::make('action_title.'.$locale)
+                                ->label(__('admin-kit-infographics::infographics.resource.title'))
+                                ->maxLength(255),
+                            Forms\Components\TextInput::make('action_link.'.$locale)
+                                ->label(__('admin-kit-infographics::infographics.resource.link'))
+                                ->url()
+                                ->maxLength(255),
+                        ])),
+                    ])
+                    ->collapsible()
+                    ->collapsed(),
                 Forms\Components\Repeater::make('slides')
                     ->label(__('admin-kit-infographics::infographics.resource.slides'))
                     ->schema([
@@ -60,14 +62,13 @@ class InfographicResource extends Resource
                                         ->columnSpan(2),
                                     Forms\Components\TextInput::make('number')
                                         ->label(__('admin-kit-infographics::infographics.resource.number'))
-                                        ->required()
                                         ->numeric(),
                                     Forms\Components\TextInput::make('postfix.'.$locale)
                                         ->label(__('admin-kit-infographics::infographics.resource.postfix'))
                                         ->placeholder(__('admin-kit-infographics::infographics.resource.postfix_placeholder'))
                                         ->maxLength(255),
                                     Forms\Components\TextInput::make('subtitle.'.$locale)
-                                        ->label(__('admin-kit-infographics::infographics.resource.subtitle'))
+                                        ->label(__('admin-kit-infographics::infographics.resource.title'))
                                         ->columnSpan(2),
                                 ])
                                 ->columns(2)

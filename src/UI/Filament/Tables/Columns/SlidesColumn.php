@@ -2,6 +2,7 @@
 
 namespace AdminKit\Infographics\UI\Filament\Tables\Columns;
 
+use Illuminate\Support\Str;
 use Filament\Tables\Columns\Column;
 
 class SlidesColumn extends Column
@@ -11,7 +12,7 @@ class SlidesColumn extends Column
     public function getState(): mixed
     {
         return $this->record->translated_slides
-            ->map(fn ($slide) => $slide->title)
+            ->map(fn ($slide) => Str::of($slide->title)->limit(5))
             ->filter()
             ->join(', ');
     }
