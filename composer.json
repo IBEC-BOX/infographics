@@ -1,6 +1,7 @@
 {
     "name": "ibecsystems/admin-kit-infographics",
     "description": "Infographics package for AdminKit",
+    "type": "admin-kit-package",
     "keywords": [
         "ibec-box",
         "laravel",
