@@ -2,6 +2,4 @@
 
 namespace AdminKit\Infographics;
 
-class Infographics
-{
-}
+class Infographics {}

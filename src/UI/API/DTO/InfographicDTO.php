@@ -15,8 +15,7 @@ class InfographicDTO extends Data
         public string $background,
         public array $action,
         public Collection $slides,
-    ) {
-    }
+    ) {}
 
     public static function fromModel(Infographic $infographic): InfographicDTO
     {
