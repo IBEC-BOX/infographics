@@ -35,7 +35,10 @@ class Infographic extends AbstractModel implements HasMedia
     protected array $translatable = [
         'action_title',
         'action_link',
-        'slides',
+    ];
+
+    protected $casts = [
+        'slides' => 'array',
     ];
 
     public function background(): Attribute
@@ -50,7 +53,7 @@ class Infographic extends AbstractModel implements HasMedia
         $locale = app()->getLocale();
 
         return new Attribute(
-            get: fn () => collect($this->getTranslations('slides'))
+            get: fn () => collect($this->slides)
                 ->transform(fn ($slide) => (object) [
                     'title' => $slide['title'][$locale] ?? '',
                     'subtitle' => $slide['subtitle'][$locale] ?? '',
