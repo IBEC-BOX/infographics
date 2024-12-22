@@ -70,6 +70,6 @@ class Infographic extends AbstractModel implements HasMedia
 
     protected static function newFactory(): InfographicFactory
     {
-        return new InfographicFactory();
+        return new InfographicFactory;
     }
 }
